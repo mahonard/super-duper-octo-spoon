@@ -1,0 +1,5 @@
+WTB_saddle,1234567890,33.00,25.58,false,5
+mensBibsMedium,1234567900,110.00,99.00,false,2
+womensHelmetSmall,1234567901,130.00,79.00,false,2
+spdPedals,1234567902,62.31,79.00,true,6
+mountainFork29,1234567912,223.00,195.00,false,1
