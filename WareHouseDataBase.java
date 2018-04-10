@@ -20,7 +20,6 @@ public class WareHouseDataBase
 	public List<WareHouse> getWHDB()
 	{
 		return whDataBase;
-		
 	}
 	
 	public ArrayList<WareHouse> getAllWH()
@@ -78,7 +77,6 @@ public class WareHouseDataBase
 		
 		if (readStuff.hasNextLine() == false)
 		{
-			System.out.println("Database is empty.");
 			return;
 		}
 		while (readStuff.hasNextLine())
@@ -88,11 +86,11 @@ public class WareHouseDataBase
 		}
 	}
 	
-	public void saveWareHouseDB(String fileName) 
+	public void saveWareHouseDB() 
 	{		
 		try
 	    {
-			PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+			PrintWriter writer = new PrintWriter("warehouseDB.txt", "UTF-8");
 			for (WareHouse w : whDataBase)
 			{
 				writer.println(w.getWareHouseName() + "\n");

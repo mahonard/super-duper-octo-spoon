@@ -12,7 +12,6 @@ public class Commands
 	Scanner stan = new Scanner(System.in);
 	WareHouseDataBase whDB;
 	boolean timeToQuit = true;
-	String fileName = "";
 	
 	public Commands(WareHouseDataBase whDB)
 	{
@@ -21,11 +20,8 @@ public class Commands
 	
 	public boolean userInput() throws FileNotFoundException
 	{
-		System.out.println("Choose the warehouse to work in (enter \"All\" to work in any warehouse)");
-		fileName = stan.nextLine();
-		
 		System.out.println("AddVan, AddInv, Enter, Display, Sell\n"
-						  + "SortName, SortNum, Trade, Move, Show\n"
+						  + "SortName, SortNum, Move, Show\n"
 						  + "Quit: save and exit\n"
 						  + "Enter your choice: ");
 		
@@ -60,11 +56,15 @@ public class Commands
 			} 
 			else if (userCmd.equalsIgnoreCase("SortName"))
 			{
+				System.out.println("What file do you want to sort? Type \"all\" for all: ");
+				String fileName = stan.nextLine();
 				nameSortCmd(fileName);
 				return timeToQuit;
 			}
 			else if (userCmd.equalsIgnoreCase("SortNum"))
 			{
+				System.out.println("What file do you want to sort? Type \"all\" for all: ");
+				String fileName = stan.nextLine();
 				numSortCmd(fileName);
 				return timeToQuit;
 			}
@@ -73,20 +73,11 @@ public class Commands
 				takeCmd();
 				return timeToQuit;
 			}
-			else if (userCmd.equalsIgnoreCase("Trade"))
-			{
-				return timeToQuit;
-			}
 			else if (userCmd.equalsIgnoreCase("Show"))
 			{
-				WareHouse w = whDB.getWareHouse(fileName);
-				if (w != null)
+				for (WareHouse w : whDB.getWHDB())
 				{
-					System.out.println("" + w.getInv());
-				}
-				else 
-				{
-					System.out.println("Can't find warehouse");
+					System.out.println(w.getWareHouseName());
 				}
 				return timeToQuit;
 			}
@@ -122,7 +113,7 @@ public class Commands
 		{
 			WareHouse vanWH = whDB.getWareHouse(vanName);
 			System.out.println("Enter inventory update file name: ");
-			String fileName = stan.nextLine();
+			String fileName = stan.nextLine() + ".txt";
 			vanWH.wareHouseUpdate(fileName);
 		} catch (FileNotFoundException e) 
 		{
@@ -133,6 +124,8 @@ public class Commands
 	
 	private void enterCmd() 
 	{
+		System.out.println("What file do you want to add to?");
+		String fileName = stan.nextLine();
 		WareHouse wH = whDB.getWareHouse(fileName);
 		System.out.println("Enter part info, separated by commas: ");
 		String line = stan.nextLine();
@@ -150,11 +143,11 @@ public class Commands
 	
 	private void displayCmd() 
 	{
+		System.out.println("What file do you want to search?");
+		String fileName = stan.nextLine();
 		System.out.println("Enter part name: ");
 		String pN = stan.nextLine();
-		System.out.println("Searching for " + fileName);
 		WareHouse displayWH = whDB.getWareHouse(fileName);
-		System.out.println("Found warehouse " + displayWH.getWareHouseName());
 		Inventory inv = displayWH.findPart(pN);
 		if (inv != null)
 		{
@@ -168,6 +161,8 @@ public class Commands
 
 	private void sellCmd() 
 	{
+		System.out.println("What file do you want to sell from?");
+		String fileName = stan.nextLine();
 		WareHouse wh = whDB.getWareHouse(fileName);
 		System.out.println("Enter part number:");
 		int pNum = Integer.parseInt(stan.nextLine());
@@ -243,11 +238,8 @@ public class Commands
 				String[] partInfo = line.split(",");
 				String partName = partInfo[0];
 				int qty = Integer.parseInt(partInfo[1]);
-				System.out.println("Quantity moving from: " + qty);
 				wh1.movePartFrom(partName, qty);
 				Inventory i = wh1.findPart(partName);
-				System.out.println("Part qty in wh1: " + i.getTotal() + "; Qty moving to wh2: " + qty);
-				System.out.println("Quantity moving to: " + qty);
 				wh2.movePartTo(i, qty);
 			}
 		}
@@ -257,7 +249,7 @@ public class Commands
 			return;
 		}
 		
-		}
+	}
 	
 	private void quitCmd() 
 	{

@@ -9,13 +9,10 @@ public class Main
 	{
 		
 		Scanner stan = new Scanner(System.in);
-		
 		String fileName = "warehouseDB";
-		//TODO add read warehouseDB.txt loop
 		boolean stopLoop = true;
 		WareHouseDataBase whDB = new WareHouseDataBase();
-		WareHouse mainwh = whDB.wareHouseMain();
-		mainwh.wareHouseUpdate(mainwh.getWareHouseFileName());
+		whDB.readWareHouseDB(fileName);
 		Commands cmds = new Commands(whDB);
 		
 		while (stopLoop)
@@ -25,9 +22,9 @@ public class Main
 		//mainwh.saveDB(mainwh.getWareHouseFileName());
 		for (WareHouse wh : whDB.getAllWH())
 		{
-			wh.saveDB(wh.getWareHouseFileName());
+			wh.saveWarehouseFile(wh.getWareHouseFileName());
 		}
-		whDB.saveWareHouseDB(fileName);
+		whDB.saveWareHouseDB();
 		System.out.println("File saved.");
 	}
 

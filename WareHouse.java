@@ -9,8 +9,8 @@ import java.io.IOException;
 public class WareHouse 
 {
 	private List<Inventory> wareHouse;
-	private String whName = "";
-	private String fileName = "";
+	private String whName;
+	private String fileName;
 	
 	public WareHouse(String name) 
 	{
@@ -153,7 +153,7 @@ public class WareHouse
         return f;
     }
 	//TODO use saveDB to make warehouseDB writer
-	public void saveDB(String fileName) 
+	public void saveWarehouseFile(String fileName) 
 	{
 		try
 	        {
