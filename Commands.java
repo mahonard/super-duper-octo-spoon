@@ -254,6 +254,7 @@ public class Commands
 	private void quitCmd() 
 	{
 		System.out.println("Exiting program, saving changes.");
+		System.out.println("...");
 	}	
 	
 	

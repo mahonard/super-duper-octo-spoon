@@ -152,25 +152,29 @@ public class WareHouse
             updateInv(f,f.getBikePart(),-qty);
         return f;
     }
-	//TODO use saveDB to make warehouseDB writer
+	
 	public void saveWarehouseFile(String fileName) 
 	{
 		try
+	    {
+			PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+	        for (Inventory inv : wareHouse)
 	        {
-				PrintWriter writer = new PrintWriter(fileName, "UTF-8");
-	            for (Inventory inv : wareHouse)
-	                writer.println(inv.getBikePart().getName() + "," +
-	                			   inv.getBikePart().getNum() + "," +
-	                			   inv.getBikePart().getRegPrice() + "," +
-	                			   inv.getBikePart().getSalePrice() + "," +
-	                               inv.getBikePart().getOnSale() + "," +
-	                               inv.getTotal());
+	            writer.println(inv.getBikePart().getName() + "," +
+	                		   inv.getBikePart().getNum() + "," +
+	                		   inv.getBikePart().getRegPrice() + "," +
+	                		   inv.getBikePart().getSalePrice() + "," +
+	                           inv.getBikePart().getOnSale() + "," +
+	                           inv.getTotal());
+	            writer.flush();
 	            writer.close();
-	        } catch (IOException e) 
-	        {
-	            System.out.println("file error!");
-	            e.printStackTrace();
 	        }
+	    }
+		catch (IOException e) 
+	    {
+			System.out.println("file error!");
+			e.printStackTrace();
+	    }
 	}
 
 	public void movePartTo(Inventory i, int qty) 

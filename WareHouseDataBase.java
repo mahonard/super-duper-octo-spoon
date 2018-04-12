@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -45,10 +46,9 @@ public class WareHouseDataBase
 	public WareHouse addToDB(String whName) throws FileNotFoundException
 	{
 		WareHouse newWH = new WareHouse(whName);
-		newWH.setWareHouseName(whName);
 		newWH.createWareHouseFile(whName);
 		whDataBase.add(newWH);
-		return null;
+		return newWH;
 	}
 	
 	public void vanInvUpdate(WareHouse wh) throws FileNotFoundException
@@ -72,7 +72,6 @@ public class WareHouseDataBase
 	public void readWareHouseDB(String fileName) throws FileNotFoundException 
 	{
 		Scanner readStuff = new Scanner(new File(fileName));
-		WareHouse w = new WareHouse("");
 		String whName = "";
 		
 		if (readStuff.hasNextLine() == false)
@@ -88,13 +87,14 @@ public class WareHouseDataBase
 	
 	public void saveWareHouseDB() 
 	{		
+		PrintWriter writer = null;
 		try
 	    {
-			PrintWriter writer = new PrintWriter("warehouseDB.txt", "UTF-8");
+			File saveFile = new File("warehouseDB.txt");
+			writer = new PrintWriter(saveFile, "UTF-8");
 			for (WareHouse w : whDataBase)
 			{
-				writer.println(w.getWareHouseName() + "\n");
-				writer.close();
+				writer.println(w.getWareHouseName());
 			}
 	    }
 		catch (IOException e) 
@@ -102,5 +102,12 @@ public class WareHouseDataBase
 			System.out.println("file error!");
 	        e.printStackTrace();
 	    }
+		finally
+		{
+			if (writer != null)
+			{
+				writer.close();
+			}
+		}
 	}
 }
