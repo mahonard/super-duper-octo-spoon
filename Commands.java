@@ -230,7 +230,9 @@ public class Commands
 			String whName1 = info[0];
 			String whName2 = info[1];
 			WareHouse wh1 = whDB.getWareHouse(whName1);
+			System.out.println(wh1.getWareHouseName());
 			WareHouse wh2 = whDB.getWareHouse(whName2);
+			System.out.println(wh2.getWareHouseName());
 			
 			while (readStuff.hasNextLine() && !(whName2.equals("mainwh")))
 			{
@@ -239,6 +241,7 @@ public class Commands
 				String partName = partInfo[0];
 				int qty = Integer.parseInt(partInfo[1]);
 				wh1.movePartFrom(partName, qty);
+				System.out.println(partName + " " + qty);
 				Inventory i = wh1.findPart(partName);
 				wh2.movePartTo(i, qty);
 			}

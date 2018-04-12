@@ -7,7 +7,7 @@ public class Main
 {
 	public static void main(String[] args) throws FileNotFoundException 
 	{
-		
+		//TODO get main to load in
 		Scanner stan = new Scanner(System.in);
 		boolean stopLoop = true;
 		WareHouseDataBase whDB = new WareHouseDataBase();

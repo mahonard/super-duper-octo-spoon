@@ -81,7 +81,8 @@ public class WareHouseDataBase
 		while (readStuff.hasNextLine())
 		{
 			whName = readStuff.nextLine();
-			addToDB(whName);
+			WareHouse wh = addToDB(whName);
+			wh.wareHouseUpdate(whName + ".txt");
 		}
 	}
 	
