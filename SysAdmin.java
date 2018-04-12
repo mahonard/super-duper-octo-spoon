@@ -1,6 +1,10 @@
 import java.util.Scanner;
 public class SysAdmin extends LoginAccount
 {
+	public SysAdmin(String userName, String passWord, String firstName, String lastName, long phoneNum, String email) {
+		super(userName, passWord, firstName, lastName, phoneNum, email);
+	}
+
 	Scanner stan = new Scanner(System.in);
 	String firstName = "";
 	String lastName = "";
@@ -59,5 +63,6 @@ public class SysAdmin extends LoginAccount
 			String newPW = stan.nextLine();
 			//constructor.passwordSet(newPW);
 		}
+		return null;
 	}
 }
