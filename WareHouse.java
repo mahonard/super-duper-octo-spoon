@@ -155,9 +155,10 @@ public class WareHouse
 	
 	public void saveWarehouseFile(String fileName) 
 	{
+		PrintWriter writer = null;
 		try
 	    {
-			PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+			writer = new PrintWriter(fileName, "UTF-8");
 	        for (Inventory inv : wareHouse)
 	        {
 	            writer.println(inv.getBikePart().getName() + "," +
@@ -166,8 +167,6 @@ public class WareHouse
 	                		   inv.getBikePart().getSalePrice() + "," +
 	                           inv.getBikePart().getOnSale() + "," +
 	                           inv.getTotal());
-	            writer.flush();
-	            writer.close();
 	        }
 	    }
 		catch (IOException e) 
@@ -175,6 +174,11 @@ public class WareHouse
 			System.out.println("file error!");
 			e.printStackTrace();
 	    }
+		finally
+		{
+			if (writer != null)
+	            writer.close();
+		}
 	}
 
 	public void movePartTo(Inventory i, int qty) 
