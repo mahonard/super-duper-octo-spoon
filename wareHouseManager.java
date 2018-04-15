@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.io.FileNotFoundException;
+
 public class wareHouseManager {
     private String userName = "";
     private String passWord = "";
@@ -42,8 +44,15 @@ public class wareHouseManager {
     public void setOnSale(boolean onSale) {
         this.onSale = onSale;    }
 
-    public void inventoryUpdate(String partName, double partPrice, int qty)
-    {
+    public void inventoryUpdate(String partName, double partPrice, int qty){
+
+        Inventory In = new Inventory();
+        try {
+            In.updateInventory(Inventory);
+        } catch (FileNotFoundException e) {
+            System.out.println("Missing Inventory");
+            e.printStackTrace();
+        }
     }
 
     public void examinePart(String name, int number, double price, double salesPrice, boolean onSale)

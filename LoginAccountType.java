@@ -1,6 +1,7 @@
 public class LoginAccountType extends LoginAccount{
     private String userName;
     private String passWord;
+
     public LoginAccountType(String userName, String passWord){
 //has you log in then directs you to the proper account
         // ex: the sales associates get their options
@@ -20,7 +21,7 @@ public class LoginAccountType extends LoginAccount{
         public void createWareHouseManager()
         {
         }
-        public void createOffiveManager()
+        public void createOfficeMgr()
         {
         }
         public void resetPaycheck()
@@ -36,12 +37,17 @@ public class LoginAccountType extends LoginAccount{
         }
 //wareHouseManager
         public void inventoryUpdate(String partName, double partPrice, int qty)
-        {
+        {  Inventory In = new Inventory();
+            try {
+                In.updateInventory(Inventory);
+            } catch (FileNotFoundException e) {
+                System.out.println("Missing Inventory");
+                e.printStackTrace();
         }
         public void examinePart(String name, int number, double price, double salesPrice, boolean onSale)
         {
         }
-//officeManager
+//OfficeMgr
         public void examinePart()
         {
         }
