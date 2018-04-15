@@ -1,9 +1,12 @@
 import java.util.Scanner;
-
 public class officeMgr extends LoginAccount{
 
 
-   Scanner stan = new Scanner(System.in);
+   public officeMgr(String userName, String passWord, String firstName, String lastName, long phoneNum, String email){
+      super(userName, passWord, firstName, lastName, phoneNum, email);
+   }
+   
+   Scanner scan = new Scanner(System.in);
    private String userName;
    private String passWord;
    private String firstName;
@@ -11,7 +14,7 @@ public class officeMgr extends LoginAccount{
    private long phoneNum;
    private String email;
    
-   public LoginAccount(String userName, String passWord, String firstName, String lastName, long phoneNum, String email){
+   public void officeMgr(String userName, String passWord, String firstName, String lastName, long phoneNum, String email){
       this.userName = userName;
       this.passWord = passWord;
       this.firstName = firstName;
@@ -19,6 +22,8 @@ public class officeMgr extends LoginAccount{
       this.phoneNum = phoneNum;
       this.email = email;
    }//end constuctor 
+   
+   
    
    public void setUserName(String userName){
       this.userName = userName;
@@ -71,7 +76,7 @@ public class officeMgr extends LoginAccount{
    public void orderParts(){
    
    }//end orderParts
-   
+   /**************************************
    public String viewInvoice(){
       
    }//end viewInvoice
@@ -79,5 +84,6 @@ public class officeMgr extends LoginAccount{
    public String createPaycheck(){
       
    }//end createPaycheck
+   **************************************/
  
 }//end class
