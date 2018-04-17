@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane prefHeight="385.0" prefWidth="817.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+   <children>
+      <TabPane id="cmdsTabPane" fx:id="cmdTabPane" prefHeight="359.0" prefWidth="603.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="3" GridPane.rowIndex="2">
+        <tabs>
+          <Tab id="addVanTab" fx:id="newVanTab" text="New WH/Van">
+               <content>
+                  <Pane prefHeight="330.0" prefWidth="537.0">
+                     <children>
+                        <Button id="addVanButton" fx:id="addVanButton" layoutX="251.0" layoutY="41.0" mnemonicParsing="false" onAction="#addVan" text="Add" />
+                        <TextField id="addVanTextField" fx:id="addVanTextField" layoutX="72.0" layoutY="41.0" promptText="Enter new wh/van name" />
+                        <TextArea id="addVanTextArea" fx:id="addVanTextArea" layoutX="35.0" layoutY="95.0" prefHeight="200.0" prefWidth="351.0" />
+                        <Separator layoutX="-1.0" layoutY="-57.0" orientation="VERTICAL" prefHeight="520.0" prefWidth="0.0" />
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+          <Tab id="updateInvTab" fx:id="updateInvTab" text="Update Inv">
+               <content>
+                  <Pane prefHeight="315.0" prefWidth="361.0">
+                     <children>
+                        <Button id="updateInvButton" fx:id="updateVanButton" layoutX="251.0" layoutY="41.0" mnemonicParsing="false" onAction="#addVanInv" text="Update" />
+                        <TextField id="updateInvTextField1" fx:id="updateInvTextField" layoutX="61.0" layoutY="22.0" promptText="Warehouse to update" />
+                        <TextArea id="addVanTextArea" fx:id="addVanTextArea1" layoutX="35.0" layoutY="95.0" prefHeight="200.0" prefWidth="351.0" />
+                        <TextField id="updateVanInvTextField2" fx:id="updateInvTextField2" layoutX="61.0" layoutY="53.0" promptText="File name (no extension)" />
+                     </children>
+                  </Pane>
+               </content>
+            </Tab>
+            <Tab id="enterPartTab" fx:id="enterPartTab" text="New Part">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="289.0" layoutY="77.0" mnemonicParsing="false" text="Add" />
+                        <TextField layoutX="64.0" layoutY="77.0" prefHeight="25.0" prefWidth="184.0" promptText="Part info separated by commas" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab id="displayPartTab" fx:id="displayPartTab" text="Show Part">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField layoutX="68.0" layoutY="47.0" />
+                        <Button layoutX="236.0" layoutY="47.0" mnemonicParsing="false" text="Button" />
+                        <CheckBox id="allWareHousesCheckBox" fx:id="allWareHousesCheckBox" layoutX="68.0" layoutY="81.0" mnemonicParsing="false" onAction="#allWareHousesYes" text="Search All Warehouses" />
+                        <TextArea layoutX="68.0" layoutY="115.0" prefHeight="193.0" prefWidth="388.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab id="sellPartTab" fx:id="sellPartTab" text="Sell Part">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextField id="sellTextField" fx:id="sellPartTextField1" layoutX="61.0" layoutY="26.0" promptText="Enter part num" />
+                        <Button layoutX="234.0" layoutY="38.0" mnemonicParsing="false" text="Button" />
+                        <TextField id="sellTextField2" fx:id="sellTextField2" layoutX="61.0" layoutY="63.0" promptText="Enter quantity" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab id="sortTab" fx:id="sortTab" text="Sort">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TextArea id="sortTextArea" fx:id="sortTextArea" layoutX="16.0" layoutY="106.0" prefHeight="200.0" prefWidth="455.0" />
+                        <CheckBox id="sortAllWarehousesCheckBox" fx:id="sortAllWareHousesCheckbox" layoutX="40.0" layoutY="37.0" mnemonicParsing="false" text="Sort All Warehouses" />
+                        <ToggleButton id="nameSortToggleButton" fx:id="nameSortToggleButton" layoutX="40.0" layoutY="72.0" mnemonicParsing="false" text="Sort by Name" />
+                        <ToggleButton id="numSortToggleButton" fx:id="numSortToggleButton" layoutX="138.0" layoutY="72.0" mnemonicParsing="false" text="Sort by Number" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab id="moveTab" fx:id="moveTab" text="Move Parts">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+            <Tab id="showWHTab" fx:id="showWHTab" text="Show WH/Van">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <MenuBar prefHeight="25.0" prefWidth="809.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+        <menus>
+          <Menu id="quitcmdMenu" fx:id="quitcmdMenu" mnemonicParsing="false" onAction="#quit" text="Save and Quit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane prefHeight="359.0" prefWidth="361.0" GridPane.rowIndex="2">
+         <children>
+            <PasswordField id="loginPasswordField" fx:id="loginPasswordField" layoutX="16.0" layoutY="167.0" promptText="Enter password" />
+            <Button id="loginButton" fx:id="loginButton" layoutX="67.0" layoutY="203.0" mnemonicParsing="false" text="Login" />
+            <TextField id="loginTextField" fx:id="loginTextField" layoutX="16.0" layoutY="131.0" promptText="Enter username" />
+         </children>
+      </Pane>
+      <MenuBar GridPane.rowIndex="1">
+        <menus>
+          <Menu mnemonicParsing="false">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
