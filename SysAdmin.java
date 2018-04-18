@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class SysAdmin extends LoginAccount
 {
@@ -12,6 +13,7 @@ public class SysAdmin extends LoginAccount
 	String passWord = "";
 	String email = "";
 	Long phoneNum;
+	WareHouseDataBase whDB = new WareHouseDataBase();
 	
 	public void createOfficeMgr(String fName, String lName, String uName, String pWord, String eMail, long pN)
 	{
@@ -26,7 +28,7 @@ public class SysAdmin extends LoginAccount
 		//add set and get commands I guess?
 	}
 	
-	public void createSalesAssoc(String fName, String lName, String uName, String pWord, String eMail, long pN)
+	public void createSalesAssoc(String fName, String lName, String uName, String pWord, String eMail, long pN) throws FileNotFoundException
 	{
 		this.email = eMail;
 		this.firstName = fName;
@@ -35,10 +37,7 @@ public class SysAdmin extends LoginAccount
 		this.passWord = pWord;
 		this.email = eMail;
 		this.phoneNum = pN;
-		WareHouse wh = new WareHouse(userName);
-		wh.addToDB();
-		
-		//add set and get cmds?
+		whDB.addToDB(userName);
 	}
 	
 	public void createWarehouseMgr(String fName, String lName, String uName, String pWord, String eMail, long pN)
@@ -50,18 +49,15 @@ public class SysAdmin extends LoginAccount
 		this.passWord = pWord;
 		this.email = eMail;
 		this.phoneNum = pN;
-		
-		//add get/set cmds?
 	}
 	
 	public String resetPW(String uName, String eMail)
 	{
-		//not really how it works but I can't figure out how to make it work right now
 		if (uName == userName && eMail == email)
 		{
 			System.out.println("Enter new passsword");
 			String newPW = stan.nextLine();
-			//constructor.passwordSet(newPW);
+			setPassWord(newPW);
 		}
 		return null;
 	}
