@@ -12,8 +12,8 @@ public class SalesAssoc extends LoginAccount
 	}
 	
 	ArrayList<Invoice> ial = new ArrayList<Invoice>();
-	//TODO fix below b/c this van should have been previously made by sysadmin
-	WareHouse myVan = new WareHouse(getUserName());
+	WareHouseDataBase whDB = SysAdmin.getWHDB();
+	WareHouse myVan = whDB.getWareHouse(getUserName());
 	public void salesVanLoad(String fileName) throws FileNotFoundException
 	{
 		myVan.wareHouseUpdate(fileName);

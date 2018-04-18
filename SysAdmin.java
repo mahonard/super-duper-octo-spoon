@@ -24,11 +24,9 @@ public class SysAdmin extends LoginAccount
 		this.passWord = pWord;
 		this.email = eMail;
 		this.phoneNum = pN;
-		
-		//add set and get commands I guess?
 	}
 	
-	public void createSalesAssoc(String fName, String lName, String uName, String pWord, String eMail, long pN) throws FileNotFoundException
+	public WareHouseDataBase createSalesAssoc(String fName, String lName, String uName, String pWord, String eMail, long pN) throws FileNotFoundException
 	{
 		this.email = eMail;
 		this.firstName = fName;
@@ -38,6 +36,12 @@ public class SysAdmin extends LoginAccount
 		this.email = eMail;
 		this.phoneNum = pN;
 		whDB.addToDB(userName);
+		return whDB;
+	}
+	
+	public static WareHouseDataBase getWHDB()
+	{
+		return whDB;
 	}
 	
 	public void createWarehouseMgr(String fName, String lName, String uName, String pWord, String eMail, long pN)
