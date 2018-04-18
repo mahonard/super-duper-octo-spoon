@@ -8,7 +8,6 @@ import java.util.Collections;
 
 public class Commands 
 {
-	//TODO make cmds work with multiple WareHouses
 	Scanner stan = new Scanner(System.in);
 	WareHouseDataBase whDB;
 	boolean timeToQuit = true;

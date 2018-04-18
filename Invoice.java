@@ -9,8 +9,18 @@ public class Invoice
 	private String partNames;
 	private double soldPrice;
 	private int qtySold;
-	private String costAndQty;
 	private double totalCost;
+
+	public Invoice(String buyerName, String pickupName, String partName, double partPrice, int qty, Date date)
+	{
+		this.buyerName = buyerName;
+		buyerEmployee = pickupName;
+		partNames = partName;
+		soldPrice = partPrice;
+		qtySold = qty;
+		dateSold = date;
+	}
+
 
 	public void setBuyerName(String name)
 	{
@@ -66,15 +76,30 @@ public class Invoice
     }
     public double getTotalCost() 
     {
+    	totalCost = qtySold * soldPrice;
         return totalCost;
     }
-    public void setCostAndQty(String finalNums) 
+    private String priceToString()
     {
-        this.costAndQty = finalNums;
+    	return "" + soldPrice;
     }
-    public String getCostAndQty() 
+    private String qtyToString()
     {
-        return costAndQty;
+    	return "" + qtySold;
     }
-    
+    private String costToString()
+    {
+    	return "" + totalCost;
+    }
+    public String getInvoicePrintOut()
+    {
+    	String intro = "Sales invoice for " + buyerName + ", " + dateSold + "\n";
+    	String columns = "Part Name     Price     Qty     Total Cost\n";
+    	String parts = partNames + "     \n";
+    	String price = priceToString() + "     \n";
+    	String quantity = qtyToString() + "     \n";
+    	String finalCost = costToString() + "\n";
+    	//String pickupPerson = buyerEmployee;
+    	return intro + columns + parts + price + quantity + finalCost;
+    }
 }
