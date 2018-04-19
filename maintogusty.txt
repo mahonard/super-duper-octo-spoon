@@ -1,7 +1,0 @@
-mainwh,gustywh
-10spFrontDerailuer,5
-10spRearDerailuer,5
-11spFrontDerailuer,5
-11spRearDerailuer,5
-26inTube,20
-zarminComputer,20
