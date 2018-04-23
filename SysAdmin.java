@@ -1,12 +1,16 @@
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+
+import BikePartDatabase.WareHouseDataBase;
 public class SysAdmin extends LoginAccount
 {
-	public SysAdmin(String userName, String passWord, String firstName, String lastName, long phoneNum, String email) {
-		super(userName, passWord, firstName, lastName, phoneNum, email);
+	public SysAdmin(String userType, String userName, String passWord, String firstName, String lastName, long phoneNum, String email) 
+	{
+		super(userType, userName, passWord, firstName, lastName, phoneNum, email);
 	}
 
-	Scanner stan = new Scanner(System.in);
+	static Scanner stan = new Scanner(System.in);
+	String loginType = "";
 	String firstName = "";
 	String lastName = "";
 	String userName = "";
@@ -14,9 +18,11 @@ public class SysAdmin extends LoginAccount
 	String email = "";
 	Long phoneNum;
 	WareHouseDataBase whDB = new WareHouseDataBase();
+	static LoginAccountDataBase laDB = new LoginAccountDataBase();
 	
-	public void createOfficeMgr(String fName, String lName, String uName, String pWord, String eMail, long pN)
+	public void createOfficeMgr(String uType, String fName, String lName, String uName, String pWord, String eMail, long pN)
 	{
+		this.loginType = uType;
 		this.email = eMail;
 		this.firstName = fName;
 		this.lastName = lName;
@@ -26,8 +32,9 @@ public class SysAdmin extends LoginAccount
 		this.phoneNum = pN;
 	}
 	
-	public WareHouseDataBase createSalesAssoc(String fName, String lName, String uName, String pWord, String eMail, long pN) throws FileNotFoundException
+	public WareHouseDataBase createSalesAssoc(String uType, String fName, String lName, String uName, String pWord, String eMail, long pN) throws FileNotFoundException
 	{
+		this.loginType = uType;
 		this.email = eMail;
 		this.firstName = fName;
 		this.lastName = lName;
@@ -39,13 +46,14 @@ public class SysAdmin extends LoginAccount
 		return whDB;
 	}
 	
-	public static WareHouseDataBase getWHDB()
+	public WareHouseDataBase getWHDB()
 	{
 		return whDB;
 	}
 	
-	public void createWarehouseMgr(String fName, String lName, String uName, String pWord, String eMail, long pN)
+	public void createWarehouseMgr(String uType, String fName, String lName, String uName, String pWord, String eMail, long pN)
 	{
+		this.loginType = uType;
 		this.email = eMail;
 		this.firstName = fName;
 		this.lastName = lName;
@@ -64,5 +72,31 @@ public class SysAdmin extends LoginAccount
 			setPassWord(newPW);
 		}
 		return null;
+	}
+
+	public static void createAccountCmd() throws FileNotFoundException 
+	{
+		System.out.println("Enter user type: ");
+		String userType = stan.nextLine();
+		System.out.println("Enter username: ");
+		String userName = stan.nextLine();
+		System.out.println("Enter default password: ");
+		String passWord = stan.nextLine();
+		System.out.println("Enter user's first name: ");
+		String firstName = stan.nextLine();
+		System.out.println("Enter use's last name: ");
+		String lastName = stan.nextLine();
+		System.out.println("Enter user's phone number: ");
+		long phoneNum = stan.nextLong();
+		System.out.println("Enter user's email: ");
+		String email = stan.nextLine();
+		laDB.addToLA(userType, userName, passWord, firstName, lastName, phoneNum, email);
+	}
+
+	public static void deleteAccountCmd()
+	{
+		System.out.println("Enter username of account to delete: ");
+		String name = stan.nextLine();
+		laDB.removeAccount(name);
 	}
 }

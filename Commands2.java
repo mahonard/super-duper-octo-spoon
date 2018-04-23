@@ -1,4 +1,10 @@
+
 import java.util.Scanner;
+import BikePartDatabase.BikePart;
+import BikePartDatabase.Inventory;
+import BikePartDatabase.WareHouse;
+import BikePartDatabase.WareHouseDataBase;
+
 import java.lang.Iterable;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,19 +13,17 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 public class Commands2 
 {
-	
 	//TODO rewrite cmds to work based on user accounts
 	Scanner stan = new Scanner(System.in);
 	WareHouseDataBase whDB;
 	boolean timeToQuit = true;
 	String userType;
 	
-	public Commands2(String userType, WareHouseDataBase whDB)
+	public Commands2(String loginType, WareHouseDataBase whDB)
 	{
-		this.userType = userType;
+		this.userType = loginType;
 		this.whDB = whDB;
 	}
 	
@@ -38,7 +42,12 @@ public class Commands2
 				}
 				else if (userCmd.equalsIgnoreCase("createaccount"))
 				{
-					createAccountCmd();
+					SysAdmin.createAccountCmd();
+					return timeToQuit;
+				}
+				else if (userCmd.equalsIgnoreCase("deleteaccount"))
+				{
+					SysAdmin.deleteAccountCmd();
 					return timeToQuit;
 				}
 			}
@@ -76,9 +85,14 @@ public class Commands2
 			}
 			else if (userType.equalsIgnoreCase("OfficeMgr"))
 			{
-				else if (userCmd.equalsIgnoreCase("Display"))
+				if (userCmd.equalsIgnoreCase("Display"))
 				{
 					displayCmd();
+					return timeToQuit;
+				}
+				else if (userCmd.equalsIgnoreCase("Order"))
+				{
+					orderPartsCmd();
 					return timeToQuit;
 				}
 			}
@@ -132,20 +146,6 @@ public class Commands2
 			return timeToQuit;
 		}
 		return timeToQuit;
-	}
-	
-
-	
-	private ArrayList<String> createAccountCmd()
-	{
-		ArrayList<String> aral = new ArrayList<String>();
-		String newUserName = stan.nextLine();
-		String newPassWord = stan.nextLine();
-		String accountType = stan.nextLine();
-		//TODO this is kind of how maybe an AddUser cmd could work?
-		//aral.add(newUserName, newPassWord, accountType);
-		return aral;
-		
 	}
 	
 	private WareHouse addVanCmd() throws FileNotFoundException
@@ -311,7 +311,6 @@ public class Commands2
 		System.out.println("...");
 	}	
 	
-	
 	private void readCmd(String whName) 
 	{
 		try 
@@ -325,6 +324,11 @@ public class Commands2
 			e.printStackTrace();
 			return;
 		}
+	}
+	
+	private void orderPartsCmd() 
+	{
+		// TODO add info
 	}
 	
 }

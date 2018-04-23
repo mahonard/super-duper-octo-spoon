@@ -7,14 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import BikePartDatabase.WareHouse;
+
 public class LoginAccountDataBase
 {
-
     private List<LoginAccount> laDataBase = new ArrayList<LoginAccount>();
-
-    public LoginAccount loginAccounttMain()
+    
+    public LoginAccount loginAccountMain()
     {
-        LoginAccount mainLA = new LoginAccount("mainLA");
+        LoginAccount mainLA = new LoginAccount("sysadmin", "admin", "nimad", "Default", "User", 123456789, "admin@bpwh.com");
         laDataBase.add(mainLA);
         return mainLA;
     }
@@ -27,9 +28,9 @@ public class LoginAccountDataBase
     public ArrayList<LoginAccount> getAllLA()
     {
         ArrayList<LoginAccount> laDB = new ArrayList<LoginAccount>();
-        for (LoginAccount w : laDataBase)
+        for (LoginAccount lA : laDataBase)
         {
-            laDB.add(w);
+            laDB.add(lA);
         }
         return laDB;
     }
@@ -39,25 +40,25 @@ public class LoginAccountDataBase
         String listLA = "";
         for (LoginAccount wh : laDataBase)
         {
-            listLA += wh.getLoginAccountName() + "\n";
+            listLA += wh.getUserName() + "\n";
         }
         return listLA;
     }
 
-    public LoginAccount addToLA(String laName) throws FileNotFoundException
+    public LoginAccount addToLA(String userType, String userName, String passWord, String firstName, String lastName, long phoneNum, String email) throws FileNotFoundException
     {
-        LoginAccount newLA = new LoginAccount(laName);
-        newLA.createLoginAccountFile(laName);
+        LoginAccount newLA = new LoginAccount(userType, userName, passWord, firstName, lastName, phoneNum, email);
+        newLA.createLoginAccountFile(userName);
         laDataBase.add(newLA);
         return newLA;
     }
 
     public LoginAccount getLoginAccount(String laName)
     {
-        LoginAccount w = new LoginAccount("");
+        LoginAccount lA = new LoginAccount(null, null, null, null, null, 0, null);
         for (LoginAccount loginAccount : laDataBase)
         {
-            if (loginAccount.getLoginAccountName().equals(laName))
+            if (loginAccount.getUserName().equals(laName))
             {
                 lA = loginAccount;
             }
@@ -68,7 +69,7 @@ public class LoginAccountDataBase
     public void readLoginAccountDB(String fileName) throws FileNotFoundException
     {
         Scanner readStuff = new Scanner(new File(fileName));
-        String laName = "";
+        String userName = "";
 
         if (readStuff.hasNextLine() == false)
         {
@@ -76,9 +77,9 @@ public class LoginAccountDataBase
         }
         while (readStuff.hasNextLine())
         {
-            laName = readStuff.nextLine();
-            LoginAccount la = addToLA(laName);
-            la.loginAccountUpdate(laName + ".txt");
+            userName = readStuff.nextLine();
+            LoginAccount la = addToLA(null, userName, null, null, null, 0, null);
+            la.loginAccountUpdate(userName + ".txt");
         }
     }
 
@@ -89,9 +90,9 @@ public class LoginAccountDataBase
         {
             File saveFile = new File("loginAccountDB.txt");
             writer = new PrintWriter(saveFile, "UTF-8");
-            for (LoginAccount w : laDataBase)
+            for (LoginAccount lA : laDataBase)
             {
-                writer.println(w.getLoginAccountName());
+                writer.println(lA.getUserName());
             }
         }
         catch (IOException e)
@@ -107,4 +108,11 @@ public class LoginAccountDataBase
             }
         }
     }
+
+	public List<LoginAccount> removeAccount(String userName) {
+		
+		LoginAccount lA = getLoginAccount(userName);
+		laDataBase.remove(lA);
+		return laDataBase;
+	}
 }
