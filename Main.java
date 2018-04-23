@@ -14,25 +14,28 @@ public class Main
 		Scanner stan = new Scanner(System.in);
 		boolean stopLoop = true;
 		WareHouseDataBase whDB = new WareHouseDataBase();
+		LoginAccountDataBase laDB = new LoginAccountDataBase();
 		whDB.readWareHouseDB("warehouseDB.txt");
-		Commands cmds = new Commands(whDB);
 		
 		System.out.println("Enter username: ");
 		String userName = stan.nextLine();
 		System.out.println("Enter password: ");
 		String passWord = stan.nextLine();
-		String loginType = "";
+		String loginType = null;
 		
-		/**
-		 * for (user : userDataBase) 
-		 * {
-		 *    if (userName.equals(user.getUserName()) && passWord.equals(user.getPassWord())
-		 *    {
-		 *       loginType = user.getLoginType();
-		 *       return loginType;
-		 *    }
-		 * }
-		 */
+		for (LoginAccount user : laDB.getAllLA()) 
+		 {
+		    if (userName.equals(user.getUserName()) && passWord.equals(user.getPassWord()))
+		    {
+		       loginType = user.getLoginType();
+		    }
+		    else 
+		    {
+		    	System.out.println("Invalid login. Please try again.");
+		    }
+		 }
+		
+		Commands cmds = new Commands(loginType, whDB);
 		
 		while (stopLoop)
 		{
@@ -43,7 +46,13 @@ public class Main
 		{
 			wh.saveWarehouseFile(wh.getWareHouseFileName());
 		}
+		
+		for (LoginAccount user : laDB.getAllLA())
+		{
+			user.saveUserFile(user.getUserName());
+		}
 		whDB.saveWareHouseDB();
+		laDB.saveLoginAccountDB();
 		System.out.println("File saved.");
 	}
 
