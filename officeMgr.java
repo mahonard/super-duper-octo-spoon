@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class officeMgr extends LoginAccount{
 
-
+      
    public officeMgr(String userName, String passWord, String firstName, String lastName, long phoneNum, String email){
       super(userName, passWord, firstName, lastName, phoneNum, email);
    }
@@ -74,6 +74,11 @@ public class officeMgr extends LoginAccount{
    }//end getEmail
 
    public void orderParts(){
+      for(int min : ){
+       
+       //search for less than min/qty
+      }//end for/each loop
+      return name;
    
    }//end orderParts
    /**************************************
