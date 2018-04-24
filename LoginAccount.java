@@ -112,7 +112,7 @@ public class LoginAccount
    public void loginAccountUpdate(String fileName) throws FileNotFoundException 
    {
 	   Scanner readStuff = new Scanner(new File(fileName));
-	   LoginAccount lA = new LoginAccount(null, null, null, null, null, 0, null);
+	   LoginAccount lA = new LoginAccount("usertype", "username", "password", "firstname", "lastname", 0, "email");
 		
 	   while (readStuff.hasNextLine())
 	   {

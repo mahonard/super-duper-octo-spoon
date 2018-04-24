@@ -69,7 +69,7 @@ public class LoginAccountDataBase
     public void readLoginAccountDB(String fileName) throws FileNotFoundException
     {
         Scanner readStuff = new Scanner(new File(fileName));
-        String userName = "";
+        String userName = "admin";
 
         if (readStuff.hasNextLine() == false)
         {
@@ -78,7 +78,7 @@ public class LoginAccountDataBase
         while (readStuff.hasNextLine())
         {
             userName = readStuff.nextLine();
-            LoginAccount la = addToLA(null, userName, null, null, null, 0, null);
+            LoginAccount la = addToLA("usertype", userName, "password", "firstname", "lastname", 0, "email");
             la.loginAccountUpdate(userName + ".txt");
         }
     }

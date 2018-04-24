@@ -1,6 +1,6 @@
-SysAdmin1
-officeMgr1
-WareHouseManager1
-SalesAssoc1
-
-// just the start of accounts
+admin
+cparra
+yalhinty
+clancaster
+mbisson
+scoronado

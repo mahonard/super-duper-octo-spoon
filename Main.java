@@ -16,6 +16,7 @@ public class Main
 		WareHouseDataBase whDB = new WareHouseDataBase();
 		LoginAccountDataBase laDB = new LoginAccountDataBase();
 		whDB.readWareHouseDB("warehouseDB.txt");
+		laDB.readLoginAccountDB("loginAccountDB.txt");
 		
 		System.out.println("Enter username: ");
 		String userName = stan.nextLine();
@@ -25,35 +26,42 @@ public class Main
 		
 		for (LoginAccount user : laDB.getAllLA()) 
 		 {
-		    if (userName.equals(user.getUserName()) && passWord.equals(user.getPassWord()))
+			String findUserName = user.getUserName();
+			String findPassWord = user.getPassWord();
+		    if (findUserName.equals(userName))
 		    {
-		       loginType = user.getLoginType();
-		    }
-		    else 
-		    {
-		    	System.out.println("Invalid login. Please try again.");
+		    	loginType = user.getLoginType();
 		    }
 		 }
+		 if (loginType == null)
+		 {
+			System.out.println("Invalid login. Please try again.");
+			return; 
+		 }
 		
-		Commands cmds = new Commands(loginType, whDB);
-		
-		while (stopLoop)
+		while (!(loginType.equals(null)))
 		{
-			stopLoop = cmds.userInput();
-		}
-		
-		for (WareHouse wh : whDB.getAllWH())
-		{
-			wh.saveWarehouseFile(wh.getWareHouseFileName());
-		}
-		
-		for (LoginAccount user : laDB.getAllLA())
-		{
-			user.saveUserFile(user.getUserName());
-		}
-		whDB.saveWareHouseDB();
-		laDB.saveLoginAccountDB();
-		System.out.println("File saved.");
+			System.out.println("test");
+			Commands2 cmds = new Commands2(loginType, whDB);
+			
+			while (stopLoop)
+			{
+				stopLoop = cmds.userTypeCmds();
+			}
+			
+			for (WareHouse wh : whDB.getAllWH())
+			{
+				wh.saveWarehouseFile(wh.getWareHouseFileName());
+			}
+			
+			for (LoginAccount user : laDB.getAllLA())
+			{
+				user.saveUserFile(user.getUserName());
+			}
+			whDB.saveWareHouseDB();
+			laDB.saveLoginAccountDB();
+			System.out.println("File saved.");
+			}
 	}
 
 }

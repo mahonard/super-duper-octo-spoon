@@ -15,7 +15,7 @@ import java.util.Collections;
 
 public class Commands2 
 {
-	//TODO rewrite cmds to work based on user accounts
+
 	Scanner stan = new Scanner(System.in);
 	WareHouseDataBase whDB;
 	boolean timeToQuit = true;
@@ -29,6 +29,7 @@ public class Commands2
 	
 	public boolean userTypeCmds() throws FileNotFoundException 
 	{	
+		System.out.println("Enter a command: ");
 		String userCmd = stan.nextLine();
 		
 		while (!(userCmd.equalsIgnoreCase("quit")))
@@ -51,6 +52,7 @@ public class Commands2
 					return timeToQuit;
 				}
 			}
+			
 			else if (userType.equalsIgnoreCase("SalesAssoc"))
 			{
 				if (userCmd.equalsIgnoreCase("Display"))
@@ -92,7 +94,17 @@ public class Commands2
 				}
 				else if (userCmd.equalsIgnoreCase("Order"))
 				{
-					orderPartsCmd();
+					OfficeMgr.orderParts();
+					return timeToQuit;
+				}
+				else if (userCmd.equalsIgnoreCase("invoice"))
+				{
+					OfficeMgr.viewInvoice();
+					return timeToQuit;
+				}
+				else if (userCmd.equalsIgnoreCase("paycheck"))
+				{
+					OfficeMgr.createPaycheck();
 					return timeToQuit;
 				}
 			}
@@ -147,7 +159,7 @@ public class Commands2
 		}
 		return timeToQuit;
 	}
-	
+
 	private WareHouse addVanCmd() throws FileNotFoundException
 	{
 		System.out.println("Enter name of the new sales van: ");
@@ -325,10 +337,4 @@ public class Commands2
 			return;
 		}
 	}
-	
-	private void orderPartsCmd() 
-	{
-		// TODO add info
-	}
-	
 }
