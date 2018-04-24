@@ -74,21 +74,38 @@ public class officeMgr extends LoginAccount{
    }//end getEmail
 
    public void orderParts(){
+     /******************
       for(int min : ){
-       
+       System.out.println();
        //search for less than min/qty
       }//end for/each loop
       return name;
-   
+      *****************/
    }//end orderParts
-   /**************************************
+
    public String viewInvoice(){
       
    }//end viewInvoice
    
    public String createPaycheck(){
-      
+   /************************************************************
+       Scanner input = new Scanner( System.in);
+          calcpayCheck salesAssociate = new calcPayCheck();
+
+          String name = input.nextLine();
+          salesAssociate.setsalesAssociate( name );
+
+          System.out.print( "Enter how many days worked: " );
+          int days = input.nextInt();
+
+          System.out.print( "Enter hourly rate: " );
+          double rate = input.nextInt();
+
+          salesAssociate.calculatePay( hours, rate );
+          salesAssociate.displaySalesAssociate();
+
+          System.out.println();
+    ************************************************************/
    }//end createPaycheck
-   **************************************/
  
 }//end class
